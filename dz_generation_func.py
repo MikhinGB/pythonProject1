@@ -26,12 +26,14 @@ def multiply_def(x, y):
 print(multiply_def(2, 3)) # Выводит 6
 
 #Пример создания вызываемого объекта
-class Repeater:
-   def __init__(self, value):
-       self.value = value
-   def __call__(self, n):
-       return [self.value] * n
+class Rect:
+   def __init__(self, a, b):
+       self.a = a
+       self.b = b
+   def __call__(self):
+       return self.a * self.b
 
-repeat_five = Repeater(5)
+my_rect = Rect(2, 4)
 print('Задача 3: ВЫЗЫВАЕМЫЕ ОБЪЕКТЫ')
-print(repeat_five(3)) # Выводит [5, 5, 5]
+print(f'Стороны: {my_rect.a}, {my_rect.b}')
+print(f'Площадь: {my_rect()}')
