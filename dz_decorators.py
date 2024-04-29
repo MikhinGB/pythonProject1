@@ -3,14 +3,12 @@ def is_prime(func):
     def wrapper(*args, **kwargs):
         res = func(*args, **kwargs)
         if res <= 1:
-            print(f'{res} - ноль')
+            return str(res) + " - ноль"
         for i in range(2, int(res**0.5) + 1):
             if res % i == 0:
-                print(f'{res} - составное число')
-                break
-            print(f'{res} - простое число')
-            break
-
+                return str(res) + " - составное число"
+            return str(res) + " - простое число"
+          
 
     return wrapper
 
@@ -20,4 +18,5 @@ def sum_three(a, b, c):
     summ = a + b + c
     return summ
 
-res = sum_three(2, 3, 78)
+res = sum_three(2, 3, 6)
+print(res)
