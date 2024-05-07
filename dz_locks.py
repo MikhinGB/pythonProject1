@@ -9,17 +9,16 @@ class BankAccount:
 
 
     def debit(self, transfer):
-        self.lock.acquire()
+        with self.lock:
 
-        current_balance = self.balance
-        current_balance += transfer
+            current_balance = self.balance
+            current_balance += transfer
 
-        sleep(0.1)
+            sleep(0.1)
 
-        self.balance = current_balance
+            self.balance = current_balance
         print(f'Deposited {transfer}, new balance is {self.balance}')
 
-        self.lock.release()
 
 
     def credit(self, transfer):
@@ -28,17 +27,17 @@ class BankAccount:
         else:
             print('на счете недостаточно средств')
 
-        self.lock.acquire()
+        with self.lock:
 
-        current_balance = self.balance
-        current_balance -= transfer
+            current_balance = self.balance
+            current_balance -= transfer
 
-        sleep(0.1)
+            sleep(0.1)
 
-        self.balance = current_balance
-        print(f'Withdrew {transfer}, new balance is {self.balance}')
+            self.balance = current_balance
+            print(f'Withdrew {transfer}, new balance is {self.balance}')
 
-        self.lock.release()
+
 
 account = BankAccount()
 
