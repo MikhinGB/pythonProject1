@@ -23,9 +23,10 @@ class WarehouseManager:
         self.requestes = requestes
         processes = []
         for request in self.requestes:
-            multiprocessing.Process(target=self.process_request, args=request).start()
-        for request in self.requestes:
-            multiprocessing.Process(target=self.process_request, args=request).join()
+            p = multiprocessing.Process(target=self.process_request, args=(request,))
+            p.start()
+            _ = 3 ** (random.randint(50, 70) * 100000)       # для "подзагрузки"
+            p.join()
 
 
 
@@ -38,9 +39,9 @@ if __name__ == '__main__':
     requestes = [
         ("product1", "receipt", 100),
         ("product2", "receipt", 150),
-        ("product1", "shipment", 100),
+        ("product1", "shipment", 30),
         ("product3", "receipt", 200),
-        ("product1", "shipment", 50)
+        ("product2", "shipment", 50)
     ]
 
     manager.run(requestes)
