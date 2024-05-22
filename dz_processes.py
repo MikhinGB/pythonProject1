@@ -21,7 +21,6 @@ class WarehouseManager:
 # принимает запросы и создает для каждого свой параллельный процесc
     def run(self, requestes):
         self.requestes = requestes
-        processes = []
         for request in self.requestes:
             p = multiprocessing.Process(target=self.process_request, args=(request,))
             p.start()
