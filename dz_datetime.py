@@ -2,33 +2,30 @@ from datetime import datetime
 
 class SuperDate(datetime):
 
-    def __init__(self, y, m, d, time):
-        self.y = y
-        self.m = m
-        self.d = d
-        self.time = time
 
     def get_season(self):
-        if self.m == 12 or self.m == 1 or self.m == 2:
+        if self.month == 12 or self.month == 1 or self.month == 2:
             season = 'Winter'
-        elif self.m == 3 or self.m == 4 or self.m == 5:
+        elif self.month == 3 or self.month == 4 or self.month == 5:
             season = 'Spring'
-        elif self.m == 6 or self.m == 7 or self.m == 8:
+        elif self.month == 6 or self.month == 7 or self.month == 8:
             season = 'Summer'
         else:
             season = 'Autumn'
         return season
 
+
     def get_time_of_day(self):
-        if self.time >= 6 and self.time < 12:
+        if self.hour >= 6 and self.hour < 12:
             times_of_day = 'Morning'
-        elif self.time >= 12 and self.time < 18:
+        elif self.hour >= 12 and self.hour < 18:
             times_of_day = 'Day'
-        elif self.time >= 18 and self.time < 0:
+        elif self.hour >= 18 and self.hour < 0:
             times_of_day = 'Evening'
         else:
             times_of_day = 'Night'
         return times_of_day
+
 
 a = SuperDate(2024, 6, 22, 5)
 print(a.get_season())
